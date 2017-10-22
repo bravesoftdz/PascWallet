@@ -7,6 +7,7 @@ PascWallet (PAWA) is more simple and easy to use that the original combined Wall
 Compile with Lazarus 1.6.4 and FPC 3.0.2. Can be compiled for both Windows and Linux and both 32 and 64 bit.
 
 PascalCoin is Copyright (c) 2016 - 2017 Albert Molina, http://pascalcoin.org/
+
 PascWallet (PAWA) is Copyright (c) 2017 Preben Björn Biermann Madsen http://pascalcoin.frizen.eu/
 Distributed under the MIT software license
 
