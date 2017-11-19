@@ -1,9 +1,9 @@
 object frmpascwallet: Tfrmpascwallet
-  Left = 330
+  Left = 353
   Height = 600
-  Top = 92
+  Top = 144
   Width = 865
-  Caption = 'PascWallet (PAWA) for PascalCoin'
+  Caption = 'PAWA (PascWallet) for PascalCoin'
   ClientHeight = 577
   ClientWidth = 865
   Color = clBtnFace
@@ -210,8 +210,8 @@ object frmpascwallet: Tfrmpascwallet
       Left = 512
       Height = 22
       Top = 0
-      Width = 117
-      Caption = 'PascWallet'
+      Width = 69
+      Caption = 'PAWA:'
       Font.Color = clWindowText
       Font.Height = -19
       Font.Name = 'Tahoma'
@@ -281,7 +281,7 @@ object frmpascwallet: Tfrmpascwallet
         end
         object cbMyPrivateKeys: TComboBox
           Left = 304
-          Height = 27
+          Height = 31
           Top = 5
           Width = 411
           ItemHeight = 0
@@ -293,7 +293,7 @@ object frmpascwallet: Tfrmpascwallet
           Left = 11
           Height = 22
           Top = 10
-          Width = 278
+          Width = 270
           Caption = 'Explore accounts with one of my Wallet Keys'
           Checked = True
           Font.Color = clWindowText
@@ -864,9 +864,9 @@ object frmpascwallet: Tfrmpascwallet
     end
     object miAbout: TMenuItem
       Caption = 'About'
-      object miAboutPascalCoin: TMenuItem
+      object miAboutPawa: TMenuItem
         Caption = 'About Pascal Coin...'
-        OnClick = miAboutPascalCoinClick
+        OnClick = miAboutPawaClick
       end
     end
   end

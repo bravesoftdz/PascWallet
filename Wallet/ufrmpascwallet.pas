@@ -4,7 +4,7 @@ unit ufrmpascwallet;
   {$MODE Delphi}
 {$ENDIF}
 
-{ PascWallet (PAWA) for PascalCoin is a simple GUI build on the original PascalCoin
+{ PAWA (PascWallet) for PascalCoin is a simple GUI build on the original PascalCoin
   source code. PascWallet is copyright (c) 2017 by Björn Biermann Madsen.
   If you like it, consider a donation using PascalCoin Account: 184992-76
 
@@ -41,7 +41,7 @@ uses
 Const
   CM_PC_WalletKeysChanged = WM_USER + 1;
   CM_PC_NetConnectionUpdated = WM_USER + 2;
-  PW_Version  = '0.2a - ALFA TEST';
+  PW_Version  = '0.3b - BETA TEST';
 
 type
   TMinerPrivateKey = (mpk_NewEachTime, mpk_Random, mpk_Selected);
@@ -91,7 +91,7 @@ type
     miPrivatekeys: TMenuItem;
     miN1: TMenuItem;
     miAbout: TMenuItem;
-    miAboutPascalCoin: TMenuItem;
+    miAboutPawa: TMenuItem;
     miNewOperation: TMenuItem;
     lblCurrentBlockCaption: TLabel;
     lblCurrentBlock: TLabel;
@@ -133,7 +133,7 @@ type
     procedure cbMyPrivateKeysChange(Sender: TObject);
     procedure dgAccountsClick(Sender: TObject);
     procedure miOptionsClick(Sender: TObject);
-    procedure miAboutPascalCoinClick(Sender: TObject);
+    procedure miAboutPawaClick(Sender: TObject);
     procedure miNewOperationClick(Sender: TObject);
     procedure miPrivatekeysClick(Sender: TObject);
     procedure dgAccountsColumnMoved(Sender: TObject; FromIndex,
@@ -231,7 +231,7 @@ implementation
 
 Uses UFolderHelper, UOpenSSL, UOpenSSLdef, UConst, UTime, UFileStorage,
   UThread, UECIES, UFRMPascalCoinWalletConfig,
-  UFRMAbout, UFRMOperation, UFRMWalletKeys, UFRMPayloadDecoder, UFRMNodesIp, UFRMMemoText;
+  UAbout, UFRMOperation, UFRMWalletKeys, UFRMPayloadDecoder, UFRMNodesIp, UFRMMemoText;
 
 Type
   TThreadActivate = Class(TPCThread)
@@ -269,7 +269,7 @@ begin
       FWalletKeys.WalletFileName := TFolderHelper.GetPascalCoinDataFolder+PathDelim+'WalletKeys.dat';
     Except
       On E:Exception do begin
-        E.Message := 'Cannot open your wallet... Perhaps another instance of Pascal Coin is active!'+#10+#10+E.Message;
+        E.Message := 'Cannot open your wallet... Perhaps another instance of Pascal Coin Wallet is active!'+#10+#10+E.Message;
         Raise;
       end;
     End;
@@ -319,7 +319,7 @@ begin
   UpdateAccounts(false);
   if FAppParams.ParamByName[CT_PARAM_FirstTime].GetAsBoolean(true) then begin
     FAppParams.ParamByName[CT_PARAM_FirstTime].SetAsBoolean(false);
-    miAboutPascalCoinClick(Nil);
+    miAboutPawaClick(Nil);
   end;
 
 end;
@@ -586,7 +586,7 @@ begin
   pcAccountsOptions.ActivePage := tsPayment;
   cbExploreMyAccountsClick(nil);
 
-  lblBuild.Caption := 'PascWallet: '+PW_Version;
+  lblBuild.Caption := 'PAWA: '+PW_Version;
   {$IFDEF TESTNET}
   Image1.visible := false;
   {$ENDIF}
@@ -867,15 +867,15 @@ begin
     // New configuration... assigning a new random value
     fvi := TFolderHelper.GetTFileVersionInfo(Application.ExeName);
     FAppParams.ParamByName[CT_PARAM_MinerName].SetAsString('New Node '+DateTimeToStr(Now)+' - '+
-      fvi.InternalName+' Build:'+fvi.FileVersion);
+      fvi.InternalName+' Build on PascalCoin: '+fvi.FileVersion);
   end;
   FBlockChainGrid.ShowTimeAverageColumns:={$IFDEF SHOW_AVERAGE_TIME_STATS}True;{$ELSE}False;{$ENDIF}
   UpdateConfigChanged;
 end;
 
-procedure Tfrmpascwallet.miAboutPascalCoinClick(Sender: TObject);
+procedure Tfrmpascwallet.miAboutPawaClick(Sender: TObject);
 begin
-  With TFRMAbout.Create(Self) do
+  With TAbout.Create(Self) do
   try
     showmodal;
   finally
