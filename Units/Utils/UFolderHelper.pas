@@ -101,9 +101,9 @@ end;
 class function TFolderHelper.GetPascalCoinDataFolder: string;
 begin
   {$IFDEF TESTNET}
-  Result := GetAppDataFolder+PathDelim+'PascalWallet_TESTNET';
+  Result := GetAppDataFolder+PathDelim+'PascalCoin_TESTNET';
   {$ELSE}
-  Result := GetAppDataFolder+PathDelim+'PascalWallet';
+  Result := GetAppDataFolder+PathDelim+'PascalCoin';
   {$ENDIF}
 end;
 
